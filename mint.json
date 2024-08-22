@@ -38,7 +38,7 @@
     {
       "name": "discord",
       "icon": "discord",
-      "url": "https://discord.gg/Ky5mdQwF"
+      "url": "https://discord.com/invite/synclabs"
     },
     {
       "name": "changelog",
@@ -69,9 +69,10 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "x": "https://x.com/synclabs_so",
+    "github": "https://github.com/synchronicity-labs",
+    "linkedin": "https://www.linkedin.com/company/synclabs-ai/",
+    "discord": "https://discord.com/invite/synclabs"
   },
   "api": {
     "baseUrl": "https://api.sync.so",
