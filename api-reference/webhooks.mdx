@@ -1,0 +1,38 @@
+---
+title: 'webhooks'
+description: 'webhooks provide immediate notifications upon the completion of video generation.'
+---
+
+# wsing webhooks
+
+to use a webhook, specify the `webhookUrl` parameter when using any of our API endpoints that allow it.
+
+once your job completes or fails, a `POST` request will be sent to the `webhookUrl` with the details of the completed job:
+
+<Note>Ensure your webhook URL is open to `POST` requests and properly handles them.</Note>
+
+data will be returned regardless of the status of the job. the data returned will match the format of the corresponding `get` request for the job.
+
+for example, if you use the `POST /generate` endpoint, the webhook will return the same data as the `GET /generate/{id}` endpoint.
+
+```json
+  {
+    "id": "<string>",
+    "createdAt": "2023-11-07T05:31:56Z",
+    "status": "<string>",
+    "model": "<string>",
+    "input": [
+      {
+        "type": "<string>",
+        "url": "<string>"
+      }
+    ],
+    "webhookUrl": "<string>",
+    "options": {},
+    "stream": true,
+    "outputUrl": "<string>",
+    "error": "<string>"
+  }
+```
+
+webhooks simplify your workflow by eliminating the need for frequent status inquiries. you can continue other tasks while waiting for a webhook notification.

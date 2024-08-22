@@ -1,0 +1,31 @@
+---
+openapi: get /v2/generate/{id}
+description: ""
+---
+
+# authentication
+before you can start using the api, you need to authenticate your requests. this is done using an `x-api-key` header that links your requests to your account. if you don't have an api key yet, check out the [quickstart guide](/api-reference/quickstart#get-your-api-key) to learn how to obtain one.
+
+# track your generation from the docs
+
+<Steps>
+  <Step title="authorize">
+    enter your api key in the `x-api-key` field within the `Authorization` section.
+
+    <Frame caption={`enter your x-api-key in the authorization section`}>
+      <img src="/images/generate/get-generate-authorize.png" alt="authorize get generate api" />
+    </Frame>
+  </Step>
+  <Step title="enter generation id">
+      check your generation status by entering the generation id in the `Path` section.
+
+      <Frame caption={`
+        enter the generation id to check the status
+      `}>
+        <img src="/images/generate/get-generate-path.png" alt="path params for get generate api" />
+      </Frame>
+  </Step>
+  <Step title="download your media">
+      once the status updates to `completed`, you can download your media which will be available at the `outputUrl` field.
+  </Step>
+</Steps>

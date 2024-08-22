@@ -1,18 +1,21 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "sync. docs",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#0000FF",
+    "light": "#FF7A00",
+    "dark": "#0000FF",
+    "background": {
+      "dark": "#000000"
+    },
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#0000FF",
+      "to": "#0000FF"
     }
   },
   "topbarLinks": [
@@ -22,8 +25,8 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "sign up",
+    "url": "https://platform.sync.so/signup"
   },
   "tabs": [
     {
@@ -33,53 +36,35 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "name": "discord",
+      "icon": "discord",
+      "url": "https://discord.gg/Ky5mdQwF"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
+      "name": "changelog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://www.youtube.com/playlist?list=PLX8i0P_zBTmdSCgh6Tk1Ahs5nuK6iXFzw"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "get started",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "introduction"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "get started",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "api-reference/quickstart",
+        "api-reference/webhooks"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "generate",
       "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/generate/post-generate",
+        "api-reference/endpoint/generate/get-generate"
       ]
     }
   ],
@@ -87,5 +72,12 @@
     "x": "https://x.com/mintlify",
     "github": "https://github.com/mintlify",
     "linkedin": "https://www.linkedin.com/company/mintsearch"
-  }
+  },
+  "api": {
+    "baseUrl": "https://api.sync.so",
+    "playground": {
+      "mode": "show"
+    }
+  },
+  "openapi": "https://api.sync.so/api-json"
 }
