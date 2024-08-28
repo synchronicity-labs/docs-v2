@@ -3,84 +3,96 @@ openapi: post /v2/generate
 description: ""
 ---
 
-# authentication
-before you can start using the api, you need to authenticate your requests. this is done using an `x-api-key` header that links your requests to your account. if you don't have an api key yet, check out the [quickstart guide](/api-reference/quickstart#get-your-api-key) to learn how to obtain one.
+## getting started
+authenticate and make your first request to the generate api.
 
-# make a request from the docs
+<AccordionGroup>
+  <Accordion title="authentication">
+    before you can start using the api, you need to authenticate your requests. this is done using an `x-api-key` header that links your requests to your account. if you don't have an api key yet, check out the [quickstart guide](/api-reference/quickstart#get-your-api-key) to learn how to obtain one.
+  </Accordion>
+  <Accordion title="make a request from the docs">
+    <Steps>
+      <Step title="authorize">
+        enter your api key in the `x-api-key` field within the `Authorization` section.
 
-<Steps>
-  <Step title="authorize">
-    enter your api key in the `x-api-key` field within the `Authorization` section.
+        <Frame caption={`enter your x-api-key in the authorization section`}>
+          <img src="/images/generate/generate-authorize.png" alt="authorize generate api" />
+        </Frame>
+      </Step>
+      <Step title="enter params">
+        enter the params in the body section:
 
-    <Frame caption={`enter your x-api-key in the authorization section`}>
-      <img src="/images/generate/generate-authorize.png" alt="authorize generate api" />
-    </Frame>
-  </Step>
-  <Step title="enter params">
-    enter the params in the body section:
-
-    <Frame caption={`
-      fill out the body with the required parameters.
-    `}>
-      <img src="/images/generate/generate-body.png" alt="body params for generate api" />
-    </Frame>
-    <h3>example input</h3>
-    ```json
-    {
-      "model": "sync-1.7.1-beta",
-      "input": [
+        <Frame caption={`
+          fill out the body with the required parameters.
+        `}>
+          <img src="/images/generate/generate-body.png" alt="body params for generate api" />
+        </Frame>
+        <h3>example input</h3>
+        ```json
         {
-          "type": "audio",
-          "url": "https://example.com/audio.mp3"
-        },
-        {
-          "type": "video",
-          "url": "https://example.com/video.mp4"
+          "model": "sync-1.7.1-beta",
+          "input": [
+            {
+              "type": "audio",
+              "url": "https://example.com/audio.mp3"
+            },
+            {
+              "type": "video",
+              "url": "https://example.com/video.mp4"
+            }
+          ], 
         }
-      ], 
-    }
-    ```
-    
-  </Step>
-  <Step title="submit">
-    click the `Send` button to submit your request. after submission, you will receive a response that includes the `id` of your job, the current status, and details about the submission.
+        ```
+        
+      </Step>
+      <Step title="submit">
+        click the `Send` button to submit your request. after submission, you will receive a response that includes the `id` of your job, the current status, and details about the submission.
 
-    <h3>understanding the response</h3>
-    the initial response provides you with essential details to track your job:
+        <h3>understanding the response</h3>
+        the initial response provides you with essential details to track your job:
 
-    ```json
-    {
-      "id": "unique_job_id",
-      "createdAt": "date_time",
-      "status": "PROCESSING",
-      "model": "sync-1.7.1-beta",
-      "input": [
+        ```json
         {
-          "type": "audio",
-          "url": "https://example.com/audio.mp3"
-        },
-        {
-          "type": "video",
-          "url": "https://example.com/video.mp4"
+          "id": "unique_job_id",
+          "createdAt": "date_time",
+          "status": "PROCESSING",
+          "model": "sync-1.7.1-beta",
+          "input": [
+            {
+              "type": "audio",
+              "url": "https://example.com/audio.mp3"
+            },
+            {
+              "type": "video",
+              "url": "https://example.com/video.mp4"
+            }
+          ], 
+          "webhookUrl": null,
+          "options": {},
+          "stream": false,
+          "outputUrl": null
         }
-      ], 
-      "webhookUrl": null,
-      "options": {},
-      "stream": false,
-      "outputUrl": null
-    }
-    ```
+        ```
 
-    your job's `status` will start as `pending` and move to `processing`. use the returned `id` with the `GET /lipsync/{id}` endpoint to periodically poll for the status of your job. this polling is crucial for knowing when your video is ready.
+        your job's `status` will start as `pending` and move to `processing`. use the returned `id` with the `GET /lipsync/{id}` endpoint to periodically poll for the status of your job. this polling is crucial for knowing when your video is ready.
+      </Step>
+    </Steps>
+  </Accordion>
+</AccordionGroup>
 
-    <h3>polling for completion</h3>
+## what to do next
+explore options for monitoring your job's progress and receiving updates.
+
+<AccordionGroup>
+  <Accordion title="polling for completion">
     periodically send requests to `GET /lipsync/{id}` with your job `id`. when the job status changes to `completed`, the response will include a URL to download your synced video.
 
     learn how to poll for job completion with the [get /generate](/api-reference/endpoint/generate/get-generate) endpoint.
-
-    <h3>using webhooks</h3>
+  </Accordion>
+  <Accordion title="using webhooks">
+      
     you can also use webhooks to get real-time updates on the status of your job. to do this, set the `webhookUrl` field in the request body to the URL of your webhook.
 
     to learn more about webhooks, check out the [webhooks guide](/api-reference/webhooks).
-  </Step>
-</Steps>
+  </Accordion>
+</AccordionGroup>
