@@ -20,8 +20,12 @@
   },
   "topbarLinks": [
     {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "name": "support",
+      "url": "mailto:hello@sync.so"
+    },
+    {
+      "name": "status",
+      "url": "https://status.sync.so/"
     }
   ],
   "topbarCtaButton": {
