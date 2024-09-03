@@ -1,19 +1,26 @@
 ---
 title: 'webhooks'
-description: 'webhooks provide immediate notifications upon the completion of video generation.'
+description: 'receive real-time notifications for video generation status updates.'
 ---
 
-# using webhooks
+# why use webhooks
 
-to use a webhook, specify the `webhookUrl` parameter when using any of our API endpoints that allow it.
+webhooks offer an efficient way to receive real-time updates on your video generation jobs. instead of repeatedly polling for status updates, webhooks notify you immediately when a job completes or fails.
 
-once your job completes or fails, a `POST` request will be sent to the `webhookUrl` with the details of the completed job:
+# implementing webhooks
 
-<Note>Ensure your webhook URL is open to `POST` requests and properly handles them.</Note>
+to utilize webhooks:
 
-data will be returned regardless of the status of the job. the data returned will match the format of the corresponding `get` request for the job.
+1. specify a `webhookUrl` parameter when calling api endpoints that support it.
+2. ensure your webhook endpoint can receive and handle HTTP `POST` requests.
 
-for example, if you use the `POST /generate` endpoint, the webhook will return the same data as the `GET /generate/{id}` endpoint.
+<note>your webhook url must be configured to accept and process HTTP `POST` requests securely.</note>
+
+when a job finishes (successfully or not), we'll send an HTTP `POST` request to your specified `webhookUrl` with the job details.
+
+# webhook payload
+
+the webhook payload matches the format of the corresponding `GET` request for the job. for example, a webhook for the `POST /generate` endpoint will return data identical to the `GET /generate/{id}` endpoint:
 
 ```json
   {
@@ -35,4 +42,4 @@ for example, if you use the `POST /generate` endpoint, the webhook will return t
   }
 ```
 
-webhooks simplify your workflow by eliminating the need for frequent status inquiries. you can continue other tasks while waiting for a webhook notification.
+by leveraging webhooks, you can streamline your workflow and focus on other tasks while waiting for job completion notifications.
