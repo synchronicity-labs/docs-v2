@@ -1,0 +1,99 @@
+---
+title: 'quickstart'
+description: 'create an api key and make your first ai generation in minutes'
+icon: 'rocket'
+---
+
+# create an api key
+
+before you can start using the api, you need to authenticate your requests. this is done by using an `x-api-key` header that links your requests to your account. to create your account and an api key, follow these steps:
+
+1. sign up at the [developer playground](https://platform.sync.so) to create your account.
+2. navigate to the [keys](https://platform.sync.so/keys) page and click `create new key`.
+3. copy your api key secret and store it securely.
+
+<Warning>
+  for security reasons, you won't be able to view it again. if lost, you'll need to generate a new
+  key.
+</Warning>
+
+![api keys](/images/quickstart/api-keys.png)
+
+getting started is quick and easy - you'll be ready to use the sync api in just a few clicks!
+
+# make your first api request
+
+with your api key in hand, you can make your first api request.
+
+<CodeGroup>
+```sh cURL
+curl --request POST \
+  --url https://api.sync.so/v2/generate \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '{
+    "model": "sync-1.7.1-beta",
+    "input": [
+      {
+        "type": "video",
+        "url": "https://synchlabs-public.s3.us-west-2.amazonaws.com/david_demo_shortvid-03a10044-7741-4cfc-816a-5bccd392d1ee.mp4"
+      },
+      {
+        "type": "audio",
+        "url": "https://synchlabs-public.s3.us-west-2.amazonaws.com/david_demo_shortaud-27623a4f-edab-4c6a-8383-871b18961a4a.wav"
+      }
+    ],
+    "options": {
+      "output_format": "mp4"
+    },
+    "webhookUrl": "https://your-server.com/webhook"
+  }'
+```
+
+```python Python
+import requests
+
+url = "https://api.sync.so/v2/generate"
+
+payload = {
+    "model": "sync-1.7.1-beta",
+    "input": [
+        {
+            "type": "video",
+            "url": "https://synchlabs-public.s3.us-west-2.amazonaws.com/david_demo_shortvid-03a10044-7741-4cfc-816a-5bccd392d1ee.mp4"
+        },
+        {
+            "type": "audio",
+            "url": "https://synchlabs-public.s3.us-west-2.amazonaws.com/david_demo_shortaud-27623a4f-edab-4c6a-8383-871b18961a4a.wav"
+        }
+    ],
+    "options": {"output_format": "mp4"},
+    "webhookUrl": "https://your-server.com/webhook"
+}
+
+headers = {
+    "x-api-key": "<api-key>",
+    "Content-Type": "application/json"
+}
+
+response = requests.request("POST", url, json=payload, headers=headers)
+
+print(response.text)
+```
+
+```javascript JavaScript
+const options = {
+  method: 'POST',
+  headers: { 'x-api-key': '<api-key>', 'Content-Type': 'application/json' },
+  body: '{"model":"sync-1.7.1-beta","input":[{"type":"video","url":"https://synchlabs-public.s3.us-west-2.amazonaws.com/david_demo_shortvid-03a10044-7741-4cfc-816a-5bccd392d1ee.mp4"},{"type":"audio","url":"https://synchlabs-public.s3.us-west-2.amazonaws.com/david_demo_shortaud-27623a4f-edab-4c6a-8383-871b18961a4a.wav"}]}',
+}
+
+fetch('https://api.sync.so/v2/generate', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err))
+```
+
+</CodeGroup>
+
+to get started without writing any code, you can test out the api directly from the docs by going to the [generate](/api-reference/endpoint/generate/post-generate) endpoint.

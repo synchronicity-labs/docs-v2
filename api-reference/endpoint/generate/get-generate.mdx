@@ -1,15 +1,13 @@
 ---
 openapi: get /v2/generate/{id}
-description: ""
+description: ''
 ---
 
 ## getting started
+
 retrieve the status and result of a previously created generation.
 
 <AccordionGroup>
-  <Accordion title="authentication">
-    before you can start using the api, you need to authenticate your requests. this is done using an `x-api-key` header that links your requests to your account. if you don't have an api key yet, check out the [quickstart guide](/api-reference/quickstart#get-your-api-key) to learn how to obtain one.
-  </Accordion>
   <Accordion title="track your generation from the docs">
     <Steps>
       <Step title="authorize">
@@ -32,5 +30,6 @@ retrieve the status and result of a previously created generation.
           once the status updates to `completed`, you can download your media which will be available at the `outputUrl` field.
       </Step>
     </Steps>
+
   </Accordion>
 </AccordionGroup>

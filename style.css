@@ -1,0 +1,8 @@
+* {
+  text-transform: lowercase;
+}
+
+input,
+textarea {
+  text-transform: none;
+}
