@@ -83,6 +83,18 @@
     "baseUrl": "https://api.sync.so",
     "playground": {
       "mode": "show"
+    },
+    "paramFields": {
+      "expanded": "all"
+    },
+    "request": {
+      "example": {
+        "languages": [
+          "curl",
+          "javascript",
+          "python"
+        ]
+      }
     }
   },
   "openapi": "https://api.sync.so/api-json",
@@ -93,5 +105,11 @@
     "ga4": {
       "measurementId": "G-YNP15LB2SX"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/api-reference/quickstart",
+      "destination": "/quickstart"
+    }
+  ]
 }
