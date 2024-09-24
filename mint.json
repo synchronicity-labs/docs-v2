@@ -25,7 +25,7 @@
     },
     {
       "name": "status",
-      "url": "https://status.sync.so/"
+      "url": "https://status.sync.so"
     }
   ],
   "topbarCtaButton": {
@@ -36,7 +36,7 @@
     {
       "name": "playground",
       "icon": "screwdriver-wrench",
-      "url": "https://platform.sync.so/"
+      "url": "https://platform.sync.so"
     },
     {
       "name": "discord",
@@ -76,7 +76,7 @@
   "footerSocials": {
     "x": "https://x.com/synclabs_so",
     "github": "https://github.com/synchronicity-labs",
-    "linkedin": "https://www.linkedin.com/company/synclabs-ai/",
+    "linkedin": "https://www.linkedin.com/company/synclabs-ai",
     "discord": "https://discord.com/invite/synclabs"
   },
   "api": {
