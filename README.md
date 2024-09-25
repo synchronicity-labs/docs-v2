@@ -1,32 +1,37 @@
-# Mintlify Starter Kit
+# sync dev docs
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+welcome to sync's dev docs. we use mintlify to manage and serve our docs.
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+## getting started
 
-### Development
+to work on these docs locally:
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+1. install the mintlify cli:
 
 ```
 npm i -g mintlify
 ```
 
-Run the following command at the root of your documentation (where mint.json is)
+2. run the dev server:
 
 ```
 mintlify dev
 ```
 
-### Publishing Changes
+## editing docs
 
-Install our Github App to auto propagate changes from your repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard.
+- all docs are written in markdown
+- the `mint.json` file controls the site structure and config
+- make changes and preview them locally using the dev server
 
-#### Troubleshooting
+## publishing
 
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `mint.json`
+we use github actions to automatically deploy changes. just push to the main/topic-branch, and your updates will go live/preview.
+
+## need help?
+
+if you run into issues:
+
+- make sure you're in the right folder (where `mint.json` is).
+- try running `mintlify install` to refresh dependencies.
+- ping @assimovt or @nozma-knows to get help.
