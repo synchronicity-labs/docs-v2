@@ -25,20 +25,19 @@
     },
     {
       "name": "status",
-      "url": "https://status.sync.so/"
+      "url": "https://status.sync.so"
     }
   ],
   "topbarCtaButton": {
     "name": "sign up",
     "url": "https://platform.sync.so/signup"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
   "anchors": [
+    {
+      "name": "playground",
+      "icon": "screwdriver-wrench",
+      "url": "https://platform.sync.so"
+    },
     {
       "name": "discord",
       "icon": "discord",
@@ -46,51 +45,71 @@
     },
     {
       "name": "changelog",
-      "icon": "newspaper",
-      "url": "https://www.youtube.com/playlist?list=PLX8i0P_zBTmdSCgh6Tk1Ahs5nuK6iXFzw"
+      "icon": "list",
+      "url": "https://sync.so/changelog"
     }
   ],
   "navigation": [
     {
-      "group": "get started",
+      "group": "getting started",
       "pages": [
-        "introduction"
+        "introduction",
+        "quickstart",
+        "models"
       ]
     },
     {
-      "group": "get started",
+      "group": "api reference",
       "pages": [
-        "api-reference/quickstart",
-        "api-reference/webhooks"
-      ]
-    },
-    {
-      "group": "generate",
-      "pages": [
-        "api-reference/endpoint/generate/post-generate",
-        "api-reference/endpoint/generate/get-generate"
+        "api-reference/webhooks",
+        {
+          "group": "generate",
+          "icon": "video",
+          "pages": [
+            "api-reference/endpoint/generate/post-generate",
+            "api-reference/endpoint/generate/get-generate"
+          ]
+        }
       ]
     }
   ],
   "footerSocials": {
     "x": "https://x.com/synclabs_so",
     "github": "https://github.com/synchronicity-labs",
-    "linkedin": "https://www.linkedin.com/company/synclabs-ai/",
+    "linkedin": "https://www.linkedin.com/company/synclabs-ai",
     "discord": "https://discord.com/invite/synclabs"
   },
   "api": {
     "baseUrl": "https://api.sync.so",
     "playground": {
       "mode": "show"
+    },
+    "paramFields": {
+      "expanded": "all"
+    },
+    "request": {
+      "example": {
+        "languages": [
+          "curl",
+          "javascript",
+          "python"
+        ]
+      }
     }
   },
   "openapi": "https://api.sync.so/api-json",
   "analytics": {
     "posthog": {
-        "apiKey": "phc_82dxgIiZvuUFV41LErIq8UGCNYmisHq8Fn3a4LGtsYO"
+      "apiKey": "phc_82dxgIiZvuUFV41LErIq8UGCNYmisHq8Fn3a4LGtsYO"
     },
     "ga4": {
-        "measurementId": "G-YNP15LB2SX"
+      "measurementId": "G-YNP15LB2SX"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/api-reference/quickstart",
+      "destination": "/quickstart"
+    }
+  ]
 }

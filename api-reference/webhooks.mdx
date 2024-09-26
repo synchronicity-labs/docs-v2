@@ -1,45 +1,49 @@
 ---
 title: 'webhooks'
-description: 'receive real-time notifications for video generation status updates.'
+description: 'receive real-time notifications of video generation updates.'
+icon: plug
 ---
 
-# why use webhooks
+## why use webhooks
 
-webhooks offer an efficient way to receive real-time updates on your video generation jobs. instead of repeatedly polling for status updates, webhooks notify you immediately when a job completes or fails.
+webhooks offer an efficient way to receive real-time updates on your video generation jobs. instead of repeatedly polling for the status updates, webhooks notify you immediately when a job completes or fails.
 
-# implementing webhooks
+## integrating webhooks
 
 to utilize webhooks:
 
-1. specify a `webhookUrl` parameter when calling api endpoints that support it.
+1. specify a `webhookUrl` parameter when calling an api endpoints that support it.
 2. ensure your webhook endpoint can receive and handle HTTP `POST` requests.
 
-<note>your webhook url must be configured to accept and process HTTP `POST` requests securely.</note>
+<Note>
+  for security purposes, your webhook URL must be configured to accept and process HTTPS `POST`
+  requests.
+</Note>
 
 when a job finishes (successfully or not), we'll send an HTTP `POST` request to your specified `webhookUrl` with the job details.
 
-# webhook payload
+### webhook payload
 
 the webhook payload matches the format of the corresponding `GET` request for the job. for example, a webhook for the `POST /generate` endpoint will return data identical to the `GET /generate/{id}` endpoint:
 
 ```json
-  {
-    "id": "<string>",
-    "createdAt": "2023-11-07T05:31:56Z",
-    "status": "<string>",
-    "model": "<string>",
-    "input": [
-      {
-        "type": "<string>",
-        "url": "<string>"
-      }
-    ],
-    "webhookUrl": "<string>",
-    "options": {},
-    "stream": true,
-    "outputUrl": "<string>",
-    "error": "<string>"
-  }
+{
+  "id": "<string>",
+  "createdAt": "2023-11-07T05:31:56Z",
+  "status": "<string>",
+  "model": "<string>",
+  "input": [
+    {
+      "type": "<string>",
+      "url": "<string>"
+    }
+  ],
+  "webhookUrl": "<string>",
+  "options": {},
+  "stream": true,
+  "outputUrl": "<string>",
+  "error": "<string>"
+}
 ```
 
-by leveraging webhooks, you can streamline your workflow and focus on other tasks while waiting for job completion notifications.
+by leveraging webhooks, you can streamline your workflow with non-blocking calls, allowing you to focus on other tasks while receiving job completion notifications.
