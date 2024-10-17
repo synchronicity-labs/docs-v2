@@ -69,6 +69,7 @@
       "group": "api reference",
       "pages": [
         "api-reference/webhooks",
+        "api-reference/integrations",
         {
           "group": "generate",
           "icon": "video",
