@@ -6,15 +6,14 @@ icon: sparkles
 
 models are what power the sync api. they are the core of our technology and used throughout the api.
 
-## available models
-
-<AccordionGroup>
-  <Accordion icon="star" title="lipsync-1.7.1">
-    - **model id:** `lipsync-1.7.1`
-    - **description:** recommended for faster, realistic outputs.
-  </Accordion>
-  <Accordion icon="circle-check" title="lipsync-1.6.0">
-    - **model id:** `lipsync-1.6.0`
-    - **description:** ideal for simple videos with frontal faces, high-res.
-  </Accordion>
-</AccordionGroup>
+<CardGroup cols={3} rows={1}>
+  <Card title="lipsync-1.6.0" icon="circle-check" href="/models/1.6.0">
+    ideal for simple videos with frontal faces, high-res.
+  </Card>
+  <Card title="lipsync-1.7.1" icon="star" href="/models/1.7.1">
+    recommended for faster, realistic outputs.
+  </Card>
+  <Card title="lipsync-1.8.0-beta" icon="flask" href="https://discord.com/invite/synclabs">
+    flagship model with better teeth and mouth quality, but slower.
+  </Card>
+</CardGroup>
