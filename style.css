@@ -3,6 +3,7 @@
 }
 
 input,
-textarea {
+textarea,
+code > span, code {
   text-transform: none;
 }
