@@ -62,7 +62,8 @@
       "group": "sync models",
       "pages": [
         "models/1.6.0",
-        "models/1.7.1"
+        "models/1.7.1",
+        "models/1.8.0"
       ]
     },
     {
