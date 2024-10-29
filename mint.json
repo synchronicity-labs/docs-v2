@@ -59,24 +59,17 @@
       ]
     },
     {
-      "group": "sync models",
-      "pages": [
-        "models/1.6.0",
-        "models/1.7.1",
-        "models/1.8.0"
-      ]
-    },
-    {
       "group": "api reference",
       "pages": [
         "api-reference/webhooks",
-        "api-reference/integrations",
+        "api-reference/error-handling",
         {
           "group": "generate",
           "icon": "video",
           "pages": [
             "api-reference/endpoint/generate/post-generate",
-            "api-reference/endpoint/generate/get-generate"
+            "api-reference/endpoint/generate/get-generate",
+            "api-reference/endpoint/generate/get-generations"
           ]
         }
       ]
@@ -93,9 +86,6 @@
     "playground": {
       "mode": "show"
     },
-    "paramFields": {
-      "expanded": "all"
-    },
     "request": {
       "example": {
         "languages": [
@@ -106,7 +96,7 @@
       }
     }
   },
-  "openapi": "https://api.sync.so/api-json",
+  "openapi": "http://dev-api.sync.so/api-json",
   "analytics": {
     "posthog": {
       "apiKey": "phc_82dxgIiZvuUFV41LErIq8UGCNYmisHq8Fn3a4LGtsYO"

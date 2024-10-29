@@ -1,0 +1,133 @@
+---
+title: 'Error Handling'
+description: 'Learn about error codes and how to resolve them.'
+icon: bug
+---
+
+## Error Codes
+
+Here's a comprehensive list of error codes you may encounter, grouped by category and ordered from most common to least common.
+
+### Input Validation Errors
+
+#### `generation_unsupported_model`
+
+**Message:** "The requested model is not supported for this operation."
+
+**Description:** This error is thrown when you attempt to use a model that is not compatible with the current operation or API endpoint.
+
+**Resolution:**
+1. Check the documentation to see which models are supported for this specific API call.
+2. Update your request to use a supported model.
+3. If you believe this is an error, please contact our support team with details of your use case.
+
+#### `generation_media_metadata_missing`
+
+**Message:** "Required media metadata is missing from the request."
+
+**Description:** This error occurs when the media file lacks essential metadata for processing. The required metadata fields include:
+- `duration`: The length of the media in seconds (for both audio and video)
+- `frame_rate`: The number of frames per second (for video content only)
+
+**Resolution:**
+1. Ensure that your media file includes the required metadata embedded within it:
+   - For audio files: Verify that the `duration` metadata is present.
+   - For video files: Check that both `duration` and `frame_rate` metadata are included.
+2. Use media editing tools to add or update the necessary metadata to your file.
+3. Verify that the metadata is correctly embedded and readable before submitting the media for processing.
+4. For persistent issues, contact our support team for guidance on proper media preparation and metadata requirements.
+
+#### `generation_audio_length_exceeded`
+
+**Message:** "The provided audio exceeds the maximum allowed length."
+
+**Description:** This error is thrown when the audio file submitted for processing is longer than the maximum permitted duration of 300 seconds (5 minutes).
+
+**Resolution:**
+1. Trim or split your audio file to meet the length requirements.
+2. If you need to process longer audio files, consider batching your requests into smaller chunks or contact support for alternative solutions.
+
+#### `generation_audio_missing`
+
+**Message:** "No audio file was provided in the request."
+
+**Description:** This error occurs when an audio file is expected but not included in the API request.
+
+**Resolution:**
+1. Ensure that you're including the audio file in your request payload.
+2. Verify that the audio file is properly encoded and formatted as per the API requirements.
+3. For persistent issues, contact our support team for guidance on proper audio file preparation and submission.
+
+#### `generation_video_missing`
+
+**Message:** "No video file was provided in the request."
+
+**Description:** This error occurs when a video file is expected but not included in the API request.
+
+**Resolution:**
+1. Make sure you're including the video file in your request payload.
+2. Verify that the video file is properly encoded and formatted according to the API specifications.
+3. For persistent issues, contact our support team for guidance on proper video file preparation and submission.
+
+### System and Processing Errors
+
+#### `generation_timeout`
+
+**Message:** "The generation process exceeded the maximum allowed time."
+
+**Description:** This is an internal error that occurs when our system is under high load, causing the requested operation to take longer than the allotted time to complete.
+
+**Resolution:**
+1. Retry your request after a short delay, as the high load may be temporary.
+2. If possible, try submitting your request during off-peak hours.
+3. Consider breaking down large requests into smaller, more manageable chunks.
+4. If the issue persists, contact our support team to report the problem and discuss potential solutions.
+
+#### `generation_pipeline_failed`
+
+**Message:** "An error occurred in the generation pipeline."
+
+**Description:** This error indicates a failure in one of the internal processing steps of the generation pipeline.
+
+**Resolution:**
+1. Review your input data to ensure it meets all the required specifications.
+2. Try resubmitting the request, as some pipeline errors may be temporary.
+3. If the problem continues, reach out to our support team with details about your request and the specific error message for further investigation.
+
+#### `generation_database_error`
+
+**Message:** "An error occurred while accessing the database."
+
+**Description:** This error indicates a problem with database operations during the generation process.
+
+**Resolution:**
+1. Verify that your request doesn't contain any invalid or conflicting data that might cause database issues.
+2. Try your request again after a short wait, as database errors can sometimes be temporary.
+3. If the problem continues, report the issue to our support team, providing details about your request and any specific error messages you received.
+
+#### `generation_internal_auth`
+
+**Message:** "Authentication failed for internal generation service."
+
+**Description:** This error occurs when there's an issue with our internal authentication process. If you get this error, contact our support team so we can get it fixed.
+
+#### `generation_unhandled_error`
+
+**Message:** "An unexpected error occurred during the generation process."
+
+**Description:** This is a catch-all error for unforeseen issues that aren't covered by more specific error codes.
+
+**Resolution:**
+1. Check all aspects of your request for any potential issues or inconsistencies.
+2. Try the request again, as some unhandled errors may be due to temporary system glitches.
+3. If the error persists, contact our support team with a detailed description of your request and the steps to reproduce the error.
+
+## General Troubleshooting Tips
+
+1. **Check your API key:** Ensure you're using the correct API key and that it is not revoked.
+2. **Verify request format:** Double-check that your API request is properly formatted and includes all required parameters.
+3. **Review rate limits:** Make sure you haven't exceeded your API rate limits.
+4. **Check service status:** Visit our status page to see if there are any ongoing service issues.
+5. **Consult the documentation:** Our API documentation may have been updated with new information or changes.
+
+If you're still experiencing issues after trying these steps, please don't hesitate to reach out to our support team for assistance.
