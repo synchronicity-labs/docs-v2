@@ -67,9 +67,10 @@
           "group": "generate",
           "icon": "video",
           "pages": [
-            "api-reference/endpoint/generate/post-generate",
             "api-reference/endpoint/generate/get-generate",
-            "api-reference/endpoint/generate/get-generations"
+            "api-reference/endpoint/generate/get-generations",
+            "api-reference/endpoint/generate/post-generate",
+            "api-reference/endpoint/generate/post-cancel-generation"
           ]
         }
       ]
@@ -96,7 +97,7 @@
       }
     }
   },
-  "openapi": "http://dev-api.sync.so/api-json",
+  "openapi": "https://api.sync.so/api-json",
   "analytics": {
     "posthog": {
       "apiKey": "phc_82dxgIiZvuUFV41LErIq8UGCNYmisHq8Fn3a4LGtsYO"
