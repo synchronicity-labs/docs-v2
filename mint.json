@@ -96,7 +96,7 @@
       }
     }
   },
-  "openapi": "http://dev-api.sync.so/api-json",
+  "openapi": "https://api.sync.so/api-json",
   "analytics": {
     "posthog": {
       "apiKey": "phc_82dxgIiZvuUFV41LErIq8UGCNYmisHq8Fn3a4LGtsYO"
