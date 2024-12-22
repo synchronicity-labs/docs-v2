@@ -16,8 +16,8 @@ to utilize webhooks:
 2. ensure your webhook endpoint can receive and handle HTTP `POST` requests.
 
 <Note>
-  for security purposes, your webhook URL must be configured to accept and process HTTPS `POST`
-  requests.
+  for security purposes, your webhook URL must be configured to accept and
+  process HTTPS `POST` requests.
 </Note>
 
 when a job finishes (successfully or not), we'll send an HTTP `POST` request to your specified `webhookUrl` with the job details.
@@ -47,3 +47,111 @@ the webhook payload matches the format of the corresponding `GET` request for th
 ```
 
 by leveraging webhooks, you can streamline your workflow with non-blocking calls, allowing you to focus on other tasks while receiving job completion notifications.
+
+### verify webhook signatures
+
+to ensure webhook requests are coming from sync, we sign each webhook request with a signature. the signature is included in the `Sync-Signature` header.
+
+to verify signatures, use your [signing secret](https://platform.sync.so/keys?tab=webhooks).
+
+the signature is made out of 2 components:
+
+- timestamp (at the time of sending the event)
+- signature hash (timestamp and the json payload)
+
+<CodeGroup>
+
+```javascript javacript
+const express = require('express');
+const { createHmac, timingSafeEqual } = require('crypto');
+
+const app = express();
+
+const WEBHOOK_SECRET = 'whsec...';
+
+app.use(express.raw({ type: 'application/json' }));
+
+/**
+ * Validates a webhook signature.
+ * @param {string} payload - The JSON body of the webhook request.
+ * @param {string} signature - The signature from the `Sync-Signature` header.
+ * @param {string} secret - The webhook signing secret.
+ * @returns {boolean} - Returns `true` if the signature is valid.
+ */
+const verifySignature = (payload, signature, secret) => {
+  const [, timestamp, receivedSignature] = signature.match(/t=(\d+),v1=(.+)/) || [];
+  if (!timestamp || !receivedSignature) {
+    throw new Error('Invalid signature format');
+  }
+
+  const expectedSignature = createHmac('sha256', secret)
+    .update(`${timestamp}.${payload}`)
+    .digest('hex');
+
+  // Timing-safe comparison to prevent timing attacks
+  return timingSafeEqual(
+    Buffer.from(receivedSignature),
+    Buffer.from(expectedSignature)
+  );
+};
+
+app.post('/webhook', (req, res) => {
+  const signature = req.headers['Sync-Signature'];
+  const payload = req.body.toString(); // Raw payload for validation
+
+    if (!verifySignature(payload, signature, WEBHOOK_SECRET)) {
+      return res.status(400).send('Invalid signature');
+    }
+
+    // If the signature is valid, process the webhook
+});
+
+app.listen(3000, () => {
+  console.log('Webhook server listening on port 3000');
+});
+
+```
+
+```python Python
+import hmac
+import hashlib
+import re
+import json
+from typing import Any
+from flask import Flask, request, Response
+
+app = Flask(__name__)
+
+WEBHOOK_SECRET = 'whsec...'
+
+def verify_signature(payload: str, signature: str, webhook_secret: str) -> bool:
+    match = re.match(r't=(\d+),v1=(.+)', signature)
+    if not match:
+        raise ValueError('Invalid signature format')
+        
+    timestamp, received_signature = match.groups()
+
+    expected_signature = hmac.new(
+        webhook_secret.encode(),
+        f"{timestamp}.{json.dumps(payload)}".encode(),
+        hashlib.sha256
+    ).hexdigest()
+
+    return hmac.compare_digest(received_signature, expected_signature)
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    signature = request.headers.get('Sync-Signature')
+    payload = request.get_json()
+
+    if not verify_signature(payload, signature, WEBHOOK_SECRET):
+      return Response('Invalid signature', status=400)
+            
+    # If signature is valid, process the webhook
+    return Response('Webhook received', status=200)
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)
+```
+
+</CodeGroup>
