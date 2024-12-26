@@ -61,7 +61,7 @@ the signature is made out of 2 components:
 
 <CodeGroup>
 
-```javascript javacript
+```javascript Javascript
 const express = require("express");
 const { createHmac, timingSafeEqual } = require("crypto");
 
@@ -96,15 +96,15 @@ const verifySignature = (payload, signature, secret) => {
   }
 };
 
-app.post("/webhook", (req: any, res: any) => {
+app.post("/webhook", (req, res) => {
   const signature = req.headers["sync-signature"];
+
   if (!verifySignature(req.body, signature, WEBHOOK_SECRET)) {
     return res.status(400).json({
       message: "Invalid signature",
     });
   }
 
-  console.log("Webhook event received with valid signature");
   return res.status(200).json({
     message: "Webhook signature verified",
   });
@@ -160,7 +160,6 @@ def webhook():
     if not verify_signature(request.get_json(), signature, WEBHOOK_SECRET):
         return jsonify({'message': 'Invalid signature'}), 400
 
-    print("Webhook event received with valid signature")
     return jsonify({'message': 'Webhook signature verified'}), 200
 
 
