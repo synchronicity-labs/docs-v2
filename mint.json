@@ -62,6 +62,7 @@
       "group": "api reference",
       "pages": [
         "api-reference/webhooks",
+        "api-reference/integrations",
         "api-reference/error-handling",
         {
           "group": "generate",
