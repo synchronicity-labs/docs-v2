@@ -30,13 +30,13 @@
   ],
   "topbarCtaButton": {
     "name": "sign up",
-    "url": "https://platform.sync.so/signup"
+    "url": "https://sync.so/signup"
   },
   "anchors": [
     {
       "name": "playground",
       "icon": "screwdriver-wrench",
-      "url": "https://platform.sync.so"
+      "url": "https://sync.so/login"
     },
     {
       "name": "discord",
