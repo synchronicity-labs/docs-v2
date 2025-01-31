@@ -32,7 +32,7 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --header 'x-api-key: <api-key>' \
   --data '{
-    "model": "lipsync-1.7.1",
+    "model": "lipsync-1.9.0-beta",
     "input": [
       {
         "type": "video",
@@ -56,7 +56,7 @@ import requests
 url = "https://api.sync.so/v2/generate"
 
 payload = {
-    "model": "lipsync-1.7.1",
+    "model": "lipsync-1.9.0-beta",
     "input": [
         {
             "type": "video",
@@ -86,7 +86,7 @@ const options = {
   method: 'POST',
   headers: { 'x-api-key': '<api-key>', 'Content-Type': 'application/json' },
   body: JSON.stringify({
-    model: 'lipsync-1.7.1',
+    model: 'lipsync-1.9.0-beta',
     input: [
       {
         type: 'video',
