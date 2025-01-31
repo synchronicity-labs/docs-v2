@@ -44,9 +44,9 @@
       "url": "https://discord.com/invite/synclabs"
     },
     {
-      "name": "changelog",
-      "icon": "list",
-      "url": "https://sync.so/changelog"
+      "name": "blog",
+      "icon": "newspaper",
+      "url": "https://sync.so/blog"
     }
   ],
   "navigation": [
