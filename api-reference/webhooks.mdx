@@ -4,11 +4,11 @@ description: "Receive real-time notifications of video generation updates."
 icon: gear
 ---
 
-## Why Use Webhooks
+## Why use webhooks
 
 Webhooks offer an efficient way to receive real-time updates on your video generation jobs. Instead of repeatedly polling for the status updates, webhooks notify you immediately when a job completes or fails.
 
-## Integrating Webhooks
+## Integrating webhooks
 
 To utilize webhooks:
 
@@ -48,7 +48,7 @@ The webhook payload matches the format of the corresponding `GET` request for th
 
 By leveraging webhooks, you can streamline your workflow with non-blocking calls, allowing you to focus on other tasks while receiving job completion notifications.
 
-### Verify Webhook Signatures
+### Verify webhook signatures
 
 To ensure webhook requests are coming from Sync, we sign each webhook request with a signature. The signature is included in the `Sync-Signature` header.
 
