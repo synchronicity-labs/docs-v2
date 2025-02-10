@@ -1,32 +1,32 @@
 ---
 openapi: post /v2/generate
-description: create generations using one of the available sync ai models.
+description: Create generations using one of the available sync AI models.
 ---
 
-## getting started
+## Getting started
 
-authenticate and make your first request to the `generate` api.
+Authenticate and make your first request to the `generate` API.
 
 <AccordionGroup>
-  <Accordion title="make a request from the docs">
+  <Accordion title="Make a request from the docs">
     <Steps>
-      <Step title="authorize">
-        enter your api key in the `x-api-key` field within the `Authorization` section.
+      <Step title="Authorize">
+        Enter your API key in the `x-api-key` field within the `Authorization` section.
 
-        <Frame caption={`enter your x-api-key in the authorization section`}>
-          <img src="/images/generate/generate-authorize.png" alt="authorize generate api" />
+        <Frame caption={`Enter your x-api-key in the Authorization section`}>
+          <img src="/images/generate/generate-authorize.png" alt="Authorize generate API" />
         </Frame>
       </Step>
-      <Step title="enter params">
-        enter the params in the body section:
+      <Step title="Enter params">
+        Enter the params in the body section:
 
         <Frame caption={`
-          fill out the body with the required parameters.
+          Fill out the body with the required parameters.
         `}>
-          <img src="/images/generate/generate-body.png" alt="body params for generate api" />
+          <img src="/images/generate/generate-body.png" alt="Body params for generate API" />
         </Frame>
 
-        **example input:**
+        **Example input:**
 
         ```json
         {
@@ -45,8 +45,8 @@ authenticate and make your first request to the `generate` api.
         ```
 
       </Step>
-      <Step title="send a request">
-        click the `Send` button to submit your request. after the submission, you will receive a response that includes the `id` of your job, the current status, and the details to track your job.
+      <Step title="Send a request">
+        Click the `Send` button to submit your request. After the submission, you will receive a response that includes the `id` of your job, the current status, and the details to track your job.
 
         ```json
         {
@@ -71,29 +71,29 @@ authenticate and make your first request to the `generate` api.
         }
         ```
 
-        your job's `status` will start as `pending` and move to `processing`. use the returned `id` with the `GET /lipsync/{id}` endpoint to periodically poll for the status of your job. this polling is crucial for knowing when your video is ready.
+        Your job's `status` will start as `PENDING` and move to `PROCESSING`. Use the returned `id` with the `GET /lipsync/{id}` endpoint to periodically poll for the status of your job. This polling is crucial for knowing when your video is ready.
       </Step>
     </Steps>
 
   </Accordion>
 </AccordionGroup>
 
-## what to do next
+## What to do next
 
-explore options for monitoring your job's progress and receiving updates.
+Explore options for monitoring your job's progress and receiving updates.
 
 <AccordionGroup>
-  <Accordion title="polling for completion">
-    periodically send requests to `GET /lipsync/{id}` with your job `id`. when the job status changes to `completed`, the response will include a URL to download your synced video.
+  <Accordion title="Polling for completion">
+    Periodically send requests to `GET /lipsync/{id}` with your job `id`. When the job status changes to `COMPLETED`, the response will include a URL to download your synced video.
 
-    learn how to poll for job completion with the [GET /generate](/api-reference/endpoint/generate/get-generate) endpoint.
+    Learn how to poll for job completion with the [GET /generate](/api-reference/endpoint/generate/get-generate) endpoint.
 
   </Accordion>
-  <Accordion title="using webhooks">
+  <Accordion title="Using webhooks">
       
-    you can also use webhooks to get real-time updates on the status of your job. to do this, set the `webhookUrl` field in the request body to the URL of your webhook.
+    You can also use webhooks to get real-time updates on the status of your job. To do this, set the `webhookUrl` field in the request body to the URL of your webhook.
 
-    to learn more about webhooks, check out how to use the [webhooks](/api-reference/webhooks).
+    To learn more about webhooks, check out how to use the [Webhooks](/api-reference/webhooks).
 
   </Accordion>
 </AccordionGroup>
