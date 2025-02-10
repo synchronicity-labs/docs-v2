@@ -22,7 +22,7 @@ To utilize webhooks:
 
 When a job finishes (successfully or not), we'll send an HTTP `POST` request to your specified `webhookUrl` with the job details.
 
-### Webhook Payload
+### Webhook payload
 
 The webhook payload matches the format of the corresponding `GET` request for the job. For example, a webhook for the `POST /generate` endpoint will return data identical to the `GET /generate/{id}` endpoint:
 
