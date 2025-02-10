@@ -1,30 +1,30 @@
 ---
-title: "webhooks"
-description: "receive real-time notifications of video generation updates."
+title: "Webhooks"
+description: "Receive real-time notifications of video generation updates."
 icon: gear
 ---
 
-## why use webhooks
+## Why Use Webhooks
 
-webhooks offer an efficient way to receive real-time updates on your video generation jobs. instead of repeatedly polling for the status updates, webhooks notify you immediately when a job completes or fails.
+Webhooks offer an efficient way to receive real-time updates on your video generation jobs. Instead of repeatedly polling for the status updates, webhooks notify you immediately when a job completes or fails.
 
-## integrating webhooks
+## Integrating Webhooks
 
-to utilize webhooks:
+To utilize webhooks:
 
-1. specify a `webhookUrl` parameter when calling an api endpoints that support it.
-2. ensure your webhook endpoint can receive and handle HTTP `POST` requests.
+1. Specify a `webhookUrl` parameter when calling an API endpoints that support it.
+2. Ensure your webhook endpoint can receive and handle HTTP `POST` requests.
 
 <Note>
-  for security purposes, your webhook URL must be configured to accept and
+  For security purposes, your webhook URL must be configured to accept and
   process HTTPS `POST` requests.
 </Note>
 
-when a job finishes (successfully or not), we'll send an HTTP `POST` request to your specified `webhookUrl` with the job details.
+When a job finishes (successfully or not), we'll send an HTTP `POST` request to your specified `webhookUrl` with the job details.
 
-### webhook payload
+### Webhook Payload
 
-the webhook payload matches the format of the corresponding `GET` request for the job. for example, a webhook for the `POST /generate` endpoint will return data identical to the `GET /generate/{id}` endpoint:
+The webhook payload matches the format of the corresponding `GET` request for the job. For example, a webhook for the `POST /generate` endpoint will return data identical to the `GET /generate/{id}` endpoint:
 
 ```json
 {
@@ -46,18 +46,18 @@ the webhook payload matches the format of the corresponding `GET` request for th
 }
 ```
 
-by leveraging webhooks, you can streamline your workflow with non-blocking calls, allowing you to focus on other tasks while receiving job completion notifications.
+By leveraging webhooks, you can streamline your workflow with non-blocking calls, allowing you to focus on other tasks while receiving job completion notifications.
 
-### verify webhook signatures
+### Verify Webhook Signatures
 
-to ensure webhook requests are coming from sync, we sign each webhook request with a signature. the signature is included in the `Sync-Signature` header.
+To ensure webhook requests are coming from Sync, we sign each webhook request with a signature. The signature is included in the `Sync-Signature` header.
 
-to verify signatures, use your [signing secret](https://sync.so/keys?tab=webhooks).
+To verify signatures, use your [signing secret](https://sync.so/keys?tab=webhooks).
 
-the signature is made out of 2 components:
+The signature is made out of 2 components:
 
-- timestamp (at the time of sending the event)
-- signature hash (timestamp and the json payload)
+- Timestamp (at the time of sending the event)
+- Signature hash (timestamp and the JSON payload)
 
 <CodeGroup>
 

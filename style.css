@@ -1,12 +1,6 @@
-* {
-  text-transform: lowercase;
-}
 
 input,
 textarea,
 code > span,
 code > span > span,
 code > span > span > span,
-code {
-  text-transform: none;
-}

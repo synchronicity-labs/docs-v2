@@ -20,38 +20,38 @@
   },
   "topbarLinks": [
     {
-      "name": "support",
+      "name": "Support",
       "url": "mailto:hello@sync.so"
     },
     {
-      "name": "status",
+      "name": "Status",
       "url": "https://status.sync.so"
     }
   ],
   "topbarCtaButton": {
-    "name": "sign up",
+    "name": "Sign up",
     "url": "https://sync.so/signup"
   },
   "anchors": [
     {
-      "name": "playground",
+      "name": "Playground",
       "icon": "screwdriver-wrench",
       "url": "https://sync.so/login"
     },
     {
-      "name": "discord",
+      "name": "Discord",
       "icon": "discord",
       "url": "https://discord.com/invite/synclabs"
     },
     {
-      "name": "blog",
+      "name": "Blog",
       "icon": "newspaper",
       "url": "https://sync.so/blog"
     }
   ],
   "navigation": [
     {
-      "group": "getting started",
+      "group": "Getting Started",
       "pages": [
         "introduction",
         "quickstart",
@@ -59,13 +59,13 @@
       ]
     },
     {
-      "group": "api reference",
+      "group": "API Reference",
       "pages": [
         "api-reference/webhooks",
         "api-reference/integrations",
         "api-reference/error-handling",
         {
-          "group": "generate",
+          "group": "Generate",
           "icon": "video",
           "pages": [
             "api-reference/endpoint/generate/post-generate",
@@ -74,7 +74,7 @@
           ]
         },
         {
-          "group": "analyze",
+          "group": "Analyze",
           "icon": "magnifying-glass",
           "pages": [
             "api-reference/endpoint/analyze/post-cost"
