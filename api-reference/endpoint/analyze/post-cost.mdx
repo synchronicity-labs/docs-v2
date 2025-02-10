@@ -1,0 +1,10 @@
+---
+openapi: post /v2/analyze/cost
+description: 'Estimate the cost of a generation before submitting it'
+---
+
+## Getting Started
+
+This endpoint allows you to estimate costs by accepting identical parameters to the [`POST /v2/generate`](/api-reference/endpoint/generate/post-generate) endpoint. You can use this to preview generation costs before committing to the actual request.
+
+The response will include the estimated frame count and cost for the generation with the provided parameters.

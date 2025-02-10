@@ -72,6 +72,13 @@
             "api-reference/endpoint/generate/get-generate",
             "api-reference/endpoint/generate/get-generations"
           ]
+        },
+        {
+          "group": "analyze",
+          "icon": "magnifying-glass",
+          "pages": [
+            "api-reference/endpoint/analyze/post-cost"
+          ]
         }
       ]
     }
