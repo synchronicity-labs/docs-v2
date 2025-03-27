@@ -1,113 +1,183 @@
 ---
 title: 'Quickstart'
-description: 'Create an API key and make your first AI generation in minutes'
+description: 'create your first lipsync generation in minutes'
 icon: 'rocket'
 ---
 
-# Create an API key
+### Create your API Key
 
-Before you can start using the API, you need to authenticate your requests. This is done by using an `x-api-key` header that links your requests to your account. To create your account and an API key, follow these steps:
-
-1. Sign up at the [Developer Playground](https://sync.so/login) to create your account.
-2. Navigate to the [Keys](https://sync.so/keys) page and click `create new key`.
-3. Copy your API key secret and store it securely.
-
-<Warning>
-  For security reasons, you won't be able to view it again. If lost, you'll need to generate a new
-  key.
-</Warning>
+Create your API key from the [Dashboard](https://sync.so/keys). You will use this key to securely access the Sync API.
 
 ![API keys](/images/quickstart/api-keys.png)
 
-Getting started is quick and easy - you'll be ready to use the Sync API in just a few clicks!
+### Make your first generation
 
-# Make your first API request
-
-With your API key in hand, you can make your first API request.
+The following example shows how to make a lipsync generation using the Sync API.
 
 <CodeGroup>
-```sh cURL
-curl --request POST \
-  --url https://api.sync.so/v2/generate \
-  --header 'Content-Type: application/json' \
-  --header 'x-api-key: <api-key>' \
-  --data '{
-    "model": "lipsync-1.9.0-beta",
-    "input": [
-      {
-        "type": "video",
-        "url": "https://synchlabs-public.s3.us-west-2.amazonaws.com/david_demo_shortvid-03a10044-7741-4cfc-816a-5bccd392d1ee.mp4"
-      },
-      {
-        "type": "audio",
-        "url": "https://synchlabs-public.s3.us-west-2.amazonaws.com/david_demo_shortaud-27623a4f-edab-4c6a-8383-871b18961a4a.wav"
-      }
-    ],
-    "options": {
-      "output_format": "mp4"
-    },
-    "webhookUrl": "https://your-server.com/webhook"
-  }'
-```
-
 ```python Python
 import requests
+import time
 
-url = "https://api.sync.so/v2/generate"
+# ---------- UPDATE THESE VALUES ----------
+api_key = "YOUR_API_KEY_HERE"  # Replace with your Sync.so API key
+video_url = "YOUR_VIDEO_URL_HERE"  # URL to your source video
+audio_url = "YOUR_AUDIO_URL_HERE"  # URL to your audio file
+# ----------------------------------------
 
-payload = {
-    "model": "lipsync-1.9.0-beta",
-    "input": [
-        {
-            "type": "video",
-            "url": "https://synchlabs-public.s3.us-west-2.amazonaws.com/david_demo_shortvid-03a10044-7741-4cfc-816a-5bccd392d1ee.mp4"
-        },
-        {
-            "type": "audio",
-            "url": "https://synchlabs-public.s3.us-west-2.amazonaws.com/david_demo_shortaud-27623a4f-edab-4c6a-8383-871b18961a4a.wav"
-        }
-    ],
-    "options": {"output_format": "mp4"},
-    "webhookUrl": "https://your-server.com/webhook"
-}
-
+api_url = "https://api.sync.so/v2/generate"
 headers = {
-    "x-api-key": "<api-key>",
+    "x-api-key": api_key,
     "Content-Type": "application/json"
 }
 
-response = requests.request("POST", url, json=payload, headers=headers)
+def submit_generation():
+    payload = {
+        "model": "lipsync-1.9.0-beta",
+        "options": {
+            "output_format": "mp4"
+        },
+        "input": [
+            {"type": "video", "url": video_url},
+            {"type": "audio", "url": audio_url}
+        ]
+    }
 
-print(response.text)
+    response = requests.post(api_url, json=payload, headers=headers, timeout=30)
+    if response.status_code == 201:
+        print("Generation submitted successfully, job id:", response.json()["id"])
+        return response.json()["id"]
+    else:
+        print(response.text)
+        raise Exception(f"Failed to submit generation: {response.status_code}")
+
+def poll_job(job_id):
+    poll_url = f"{api_url}/{job_id}"
+    while True:
+        response = requests.get(poll_url, headers=headers, timeout=10)
+        try:
+            result = response.json()
+            status = result["status"]
+        except:
+            print(response.text)
+            raise Exception(f"Failed to poll job: {response.status_code}")
+    
+        terminal_statuses = ['COMPLETED', 'FAILED', 'REJECTED', 'CANCELLED']
+        if status in terminal_statuses:
+            if status == 'COMPLETED':
+                generated_video_url = result["output"][0]["url"]
+                print(f"Job {job_id} completed!")
+                print(f"Generated video URL: {generated_video_url}")
+                break
+            else:
+                print(f"Job {job_id} failed with status: {status}")
+                print(response.text)
+                break
+        else:
+            print(f'Job {job_id} status: {status}')
+            time.sleep(5)
+
+print("Starting lip sync generation job...")
+job_id = submit_generation()
+poll_job(job_id)
 ```
 
 ```javascript JavaScript
-const options = {
-  method: 'POST',
-  headers: { 'x-api-key': '<api-key>', 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    model: 'lipsync-1.9.0-beta',
+// ---------- UPDATE THESE VALUES ----------
+const apiKey = "YOUR_API_KEY_HERE"; // Replace with your Sync.so API key
+const videoUrl = "YOUR_VIDEO_URL_HERE"; // URL to your source video
+const audioUrl = "YOUR_AUDIO_URL_HERE"; // URL to your audio file
+// ----------------------------------------
+
+const apiUrl = "https://api.sync.so/v2/generate";
+const headers = {
+  "x-api-key": apiKey,
+  "Content-Type": "application/json"
+};
+
+async function submitGeneration() {
+  const payload = {
+    model: "lipsync-1.9.0-beta",
+    options: {
+      output_format: "mp4"
+    },
     input: [
-      {
-        type: 'video',
-        url: 'https://synchlabs-public.s3.us-west-2.amazonaws.com/david_demo_shortvid-03a10044-7741-4cfc-816a-5bccd392d1ee.mp4',
-      },
-      {
-        type: 'audio',
-        url: 'https://synchlabs-public.s3.us-west-2.amazonaws.com/david_demo_shortaud-27623a4f-edab-4c6a-8383-871b18961a4a.wav',
-      },
-    ],
-    options: { output_format: 'mp4' },
-    webhookUrl: 'https://your-server.com/webhook',
-  }),
+      { type: "video", url: videoUrl },
+      { type: "audio", url: audioUrl }
+    ]
+  };
+
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(payload)
+    });
+
+    if (response.status === 201) {
+      const data = await response.json();
+      console.log("Generation submitted successfully, job id:", data.id);
+      return data.id;
+    } else {
+      const errorText = await response.text();
+      console.log(errorText);
+      throw new Error(`Failed to submit generation: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Error submitting job:", error);
+    throw error;
+  }
 }
 
-fetch('https://api.sync.so/v2/generate', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err))
+async function pollJob(jobId) {
+  const pollUrl = `${apiUrl}/${jobId}`;
+  
+  while (true) {
+    try {
+      const response = await fetch(pollUrl, { headers });
+      const result = await response.json();
+      const status = result.status;
+      
+      const terminalStatuses = ['COMPLETED', 'FAILED', 'REJECTED', 'CANCELLED'];
+      
+      if (terminalStatuses.includes(status)) {
+        if (status === 'COMPLETED') {
+          const generatedVideoUrl = result.output[0].url;
+          console.log(`Job ${jobId} completed!`);
+          console.log(`Generated video URL: ${generatedVideoUrl}`);
+          break;
+        } else {
+          console.log(`Job ${jobId} failed with status: ${status}`);
+          console.log(JSON.stringify(result, null, 2));
+          break;
+        }
+      } else {
+        console.log(`Job ${jobId} status: ${status}`);
+        await new Promise(resolve => setTimeout(resolve, 5000)); // Wait 5 seconds
+      }
+    } catch (error) {
+      console.error("Error polling job:", error);
+      throw error;
+    }
+  }
+}
+
+async function main() {
+  console.log("Starting lip sync generation job...");
+  try {
+    const jobId = await submitGeneration();
+    await pollJob(jobId);
+  } catch (error) {
+    console.error("Error in main process:", error);
+  }
+}
+
+main(); 
+
 ```
 
 </CodeGroup>
 
-To get started without writing any code, you can test out the API directly from the docs by going to the [Generate](/api-reference/endpoint/generate/post-generate) endpoint.
+That's it! You've made your first lipsync generation.
+
+To explore more configuration options, check out our [API Documentation](/api-reference).
