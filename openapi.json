@@ -48,7 +48,7 @@
               }
             },
             "500": {
-              "description": "Internal Server Error - Failed to create or queue generation",
+              "description": "Internal Server Error - Failed to create generation",
               "content": {
                 "application/json": {
                   "schema": {
@@ -408,6 +408,10 @@
         },
         "GenerationOptions": {
           "type": "object",
+          "example": {
+            "output_format": "mp4",
+            "output_resolution": [1280, 720]
+          },
           "properties": {
             "pads": {
               "example": [0, 5, 0, 0],
@@ -422,7 +426,7 @@
               "type": "number",
               "enum": [1, 2, 3, 4],
               "example": 1,
-              "description": "downscale inputs for faster generations. used to preview changes."
+              "description": "downscale inputs for faster generations. useful to preview changes."
             },
             "output_format": {
               "type": "string",
@@ -431,7 +435,7 @@
                 "mov"
               ],
               "example": "mp4",
-              "description": "format of the output media that is generated.",
+              "description": "output format of the generated video",
               "default": "mp4"
             },
             "sync_mode": {
@@ -459,11 +463,6 @@
               "items": {
                 "type": "string"
               }
-            },
-            "active_speaker": {
-              "type": "boolean",
-              "example": true,
-              "description": "Whether to detect active speaker and apply generation to them"
             }
           }
         },
@@ -606,7 +605,7 @@
             },
             "webhookUrl": {
               "type": "string",
-              "description": "webhook url for generation status updates. once the generation completes we will send a POST request to the webhook url with the generation data.",
+              "description": "webhook url for generation status updates. webhook server will be notified once the generation completes.",
               "example": "https://your-server.com/webhook"
             }
           }
