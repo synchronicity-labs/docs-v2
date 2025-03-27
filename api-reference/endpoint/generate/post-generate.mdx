@@ -1,20 +1,18 @@
 ---
 openapi: "post /v2/generate"
-description: "Create generations using one of the available sync AI models."
+description: "Create generations using sync AI models."
 ---
 
-## What to do next
+## Generation Status Updates
 
-Explore options for monitoring your job's progress and receiving updates.
+There are two ways to monitor 
 
 <AccordionGroup>
   <Accordion title="Polling for completion">
-    Periodically send requests to `GET /lipsync/{id}` with your job `id`. When the job status changes to `COMPLETED`, the response will include a URL to download your synced video.
-
-    Learn how to poll for job completion with the [GET /generate](/api-reference/endpoint/generate/get-generate) endpoint.
+    Use [GET /generate](/api-reference/endpoint/generate/get-generate) endpoint to poll for a generation's status
   </Accordion>
   <Accordion title="Using webhooks">
-    You can also use webhooks to get real-time updates on the status of your job. To do this, set the `webhookUrl` field in the request body to the URL of your webhook.
+    Set `webhookUrl` field in the request body to recieve notifications for status updates of the generation
 
     To learn more about webhooks, check out how to use the [Webhooks](/api-reference/webhooks).
   </Accordion>
