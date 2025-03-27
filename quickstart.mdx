@@ -76,7 +76,7 @@ The following example shows how to make a lipsync generation using the Sync API.
           terminal_statuses = ['COMPLETED', 'FAILED', 'REJECTED', 'CANCELLED']
           if status in terminal_statuses:
               if status == 'COMPLETED':
-                  generated_video_url = result["output"][0]["url"]
+                  generated_video_url = result["outputUrl"]
                   print(f"Job {job_id} completed!")
                   print(f"Generated video URL: {generated_video_url}")
                   break
@@ -85,8 +85,7 @@ The following example shows how to make a lipsync generation using the Sync API.
                   print(response.text)
                   break
           else:
-              print(f'Job {job_id} status: {status}')
-              time.sleep(5)
+              time.sleep(10)
 
   print("Starting lip sync generation job...")
   job_id = submit_generation()
@@ -100,7 +99,7 @@ The following example shows how to make a lipsync generation using the Sync API.
   ```
   </Step>
   <Step title="Done!">
-  You should see the generated video URL in the terminal.
+  It may take a few minutes for the generation to complete. You should see the generated video URL in the terminal post completion.
   </Step>
   </Steps>
   </Accordion>
@@ -176,7 +175,7 @@ The following example shows how to make a lipsync generation using the Sync API.
         
         if (terminalStatuses.includes(status)) {
           if (status === 'COMPLETED') {
-            const generatedVideoUrl = result.output[0].url;
+            const generatedVideoUrl = result.outputUrl;
             console.log(`Job ${jobId} completed!`);
             console.log(`Generated video URL: ${generatedVideoUrl}`);
             break;
@@ -186,8 +185,7 @@ The following example shows how to make a lipsync generation using the Sync API.
             break;
           }
         } else {
-          console.log(`Job ${jobId} status: ${status}`);
-          await new Promise(resolve => setTimeout(resolve, 5000)); // Wait 5 seconds
+          await new Promise(resolve => setTimeout(resolve, 10000));
         }
       } catch (error) {
         console.error("Error polling job:", error);

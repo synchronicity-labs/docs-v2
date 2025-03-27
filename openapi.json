@@ -316,14 +316,7 @@
               "type": "string",
               "description": "The error message if the generation failed."
             }
-          },
-          "required": [
-            "id",
-            "createdAt",
-            "status",
-            "model",
-            "input"
-          ]
+          }
         },
         "ProviderItem": {
           "type": "object",
@@ -415,9 +408,11 @@
           "properties": {
             "pads": {
               "example": [0, 5, 0, 0],
-              "description": "Padding values",
+              "description": "Padding values [top, bottom, left, right]",
               "default": [0, 5, 0, 0],
               "type": "array",
+              "minItems": 4,
+              "maxItems": 4,
               "items": {
                 "type": "number"
               }
@@ -636,12 +631,7 @@
               "type": "number",
               "description": "The type of error that occurred."
             }
-          },
-          "required": [
-            "message",
-            "error",
-            "statusCode"
-          ]
+          }
         },
         "EstimatedGenerationCost": {
           "type": "object",
