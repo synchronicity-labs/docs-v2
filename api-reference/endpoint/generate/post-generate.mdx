@@ -1,82 +1,7 @@
 ---
-openapi: post /v2/generate
-description: Create generations using one of the available sync AI models.
+openapi: "post /v2/generate"
+description: "Create generations using one of the available sync AI models."
 ---
-
-## Getting started
-
-Authenticate and make your first request to the `generate` API.
-
-<AccordionGroup>
-  <Accordion title="Make a request from the docs">
-    <Steps>
-      <Step title="Authorize">
-        Enter your API key in the `x-api-key` field within the `Authorization` section.
-
-        <Frame caption={`Enter your x-api-key in the Authorization section`}>
-          <img src="/images/generate/generate-authorize.png" alt="Authorize generate API" />
-        </Frame>
-      </Step>
-      <Step title="Enter params">
-        Enter the params in the body section:
-
-        <Frame caption={`
-          Fill out the body with the required parameters.
-        `}>
-          <img src="/images/generate/generate-body.png" alt="Body params for generate API" />
-        </Frame>
-
-        **Example input:**
-
-        ```json
-        {
-          "model": "sync-1.9.0-beta",
-          "input": [
-            {
-              "type": "audio",
-              "url": "https://example.com/audio.mp3"
-            },
-            {
-              "type": "video",
-              "url": "https://example.com/video.mp4"
-            }
-          ],
-        }
-        ```
-
-      </Step>
-      <Step title="Send a request">
-        Click the `Send` button to submit your request. After the submission, you will receive a response that includes the `id` of your job, the current status, and the details to track your job.
-
-        ```json
-        {
-          "id": "unique_job_id",
-          "createdAt": "date_time",
-          "status": "PROCESSING",
-          "model": "sync-1.9.0-beta",
-          "input": [
-            {
-              "type": "audio",
-              "url": "https://example.com/audio.mp3"
-            },
-            {
-              "type": "video",
-              "url": "https://example.com/video.mp4"
-            }
-          ],
-          "webhookUrl": null,
-          "options": {},
-          "stream": false,
-          "outputUrl": null
-        }
-        ```
-
-        Your job's `status` will start as `PENDING` and move to `PROCESSING`. Use the returned `id` with the `GET /lipsync/{id}` endpoint to periodically poll for the status of your job. This polling is crucial for knowing when your video is ready.
-      </Step>
-    </Steps>
-
-  </Accordion>
-</AccordionGroup>
 
 ## What to do next
 
@@ -87,13 +12,10 @@ Explore options for monitoring your job's progress and receiving updates.
     Periodically send requests to `GET /lipsync/{id}` with your job `id`. When the job status changes to `COMPLETED`, the response will include a URL to download your synced video.
 
     Learn how to poll for job completion with the [GET /generate](/api-reference/endpoint/generate/get-generate) endpoint.
-
   </Accordion>
   <Accordion title="Using webhooks">
-      
     You can also use webhooks to get real-time updates on the status of your job. To do this, set the `webhookUrl` field in the request body to the URL of your webhook.
 
     To learn more about webhooks, check out how to use the [Webhooks](/api-reference/webhooks).
-
   </Accordion>
 </AccordionGroup>
