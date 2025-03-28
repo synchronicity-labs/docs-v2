@@ -55,14 +55,14 @@
       "pages": [
         "introduction",
         "quickstart",
-        "models"
+        "models",
+        "integrations"
       ]
     },
     {
       "group": "API Reference",
       "pages": [
         "api-reference/webhooks",
-        "api-reference/integrations",
         "api-reference/error-handling",
         {
           "group": "Generate",

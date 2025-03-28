@@ -1,0 +1,89 @@
+---
+title: 'Integrations'
+description: 'Integrations help you use Sync with powerful capabilities from third-party services'
+icon: plug
+---
+
+## Getting Started
+
+You can enable and manage all available integrations from the [integrations page](https://sync.so/integrations). Once enabled, you can:
+
+- Test integrations directly in the Generations Playground
+- Preview available options (like voices for text-to-speech)
+- Generate ready-to-use code snippets via the _View code_ button
+- Implement them in your API calls
+
+**API Key Options:**
+- Use Sync's internal integration (Usage costs will be reflected in your [usage billing](https://platform.sync.so/billing/usage))
+- Use your own API keys (Available on Creator plan or higher)
+
+## Available Integrations
+
+### ElevenLabs
+
+[ElevenLabs](https://elevenlabs.io) provides state-of-the-art Text-to-Speech and AI Voice Generation capabilities. This integration extends Sync's _generation_ endpoint with powerful text-to-speech functionality.
+
+<AccordionGroup>
+<Accordion title="Using ElevenLabs in the Playground">
+1. Navigate to the [Generations Playground](https://sync.so/login)
+2. Enable the ElevenLabs integration 
+3. Select text as your input type
+4. Choose a voice from the available options
+5. Generate your content and preview the results instantly
+</Accordion>
+
+<Accordion title="Using ElevenLabs via API">
+To use ElevenLabs with the API, include the following parameters in your request to the [`POST /generate`](/api-reference/endpoint/generate/post-generate) endpoint:
+
+```json
+{
+  "input": [
+    {
+      "type": "text",           // Must be "text" for text-to-speech
+      "text": "Your text here",  // The text to convert to speech
+      "provider": {
+        "name": "elevenlabs",   // Specify ElevenLabs as the provider
+        "voiceId": "voice_id"   // Replace with an actual ElevenLabs voice ID
+      }
+    }
+  ],
+  // Other generation parameters...
+}
+```
+
+#### Example API Request
+
+```python
+import requests
+
+api_key = "YOUR_API_KEY_HERE"
+api_url = "https://api.sync.so/v2/generate"
+
+payload = {
+  "model": "lipsync-1.8.0-beta",
+  "input": [
+    {
+      "type": "text",
+      "text": "Welcome to Sync integrations. This audio was generated with ElevenLabs.",
+      "provider": {
+        "name": "elevenlabs",
+        "voiceId": "EXAVITQu4vr4xnSDxMaL"  # Example voice ID
+      }
+    },
+    {
+      "type": "video",
+      "url": "https://example.com/your-video.mp4"
+    }
+  ]
+}
+
+headers = {
+  "x-api-key": api_key,
+  "Content-Type": "application/json"
+}
+
+response = requests.post(api_url, json=payload, headers=headers)
+print(response.json())
+```
+</Accordion>
+</AccordionGroup>
