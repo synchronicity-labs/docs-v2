@@ -1,0 +1,66 @@
+---
+title: "Personalized Video Messaging"
+description: "Create personalized video messages for your customers."
+---
+
+## Personalized Video Messaging
+
+Personalized video messaging involves creating unique video content tailored to individual recipients. This approach leverages customer data to dynamically generate videos, leading to higher engagement, better conversion rates, and a more personal connection compared to generic video messages. It's often used in sales outreach, marketing campaigns, and customer support.
+
+Follow these steps to run the personalized video messaging example:
+
+<Steps>
+  <Step title="Clone Github Repository">
+    Clone the [sync-examples repository](https://github.com/synchronicity-labs/sync-examples).
+
+    ```bash
+    git clone https://github.com/synchronicity-labs/sync-examples.git
+    cd sync-examples/personalized-video-messsging/python
+    ```
+  </Step>
+  <Step title="Set Up Environment">
+    Create a virtual environment and install the required dependencies:
+
+    ```bash
+    python -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+    ```
+  </Step>
+  <Step title="Configure API Keys">
+    You will need [Sync_API_KEY](https://sync.so/keys) and [ELEVEN_LABS_API_KEY](https://elevenlabs.io/docs/api-reference/authentication#api-keys) to run the example. Update constants.py file with your own API keys:
+
+    *   `SYNC_API_KEY`: Your API key for Sync Labs
+    *   `ELEVEN_LABS_API_KEY`: Your API key for ElevenLabs (used for voice generation).
+
+    Ensure the file is saved after adding your keys.
+  </Step>
+  <Step title="Prepare Input Data (Optional)">
+    The repository includes a sample input file `example.csv` for quickstart. 
+    You can modify it with your own inputs if desired. Each row typically represents one recipient.
+
+    The input file should have the following columns:
+    *   `video`: URL of the video to be personalized.
+    *   `text`: Text to be personalized in the video.
+    *   `segment_start`: start time of the video segment to be personalized.
+    *   `segment_end`: end time of the video segment to be personalized.
+    *   `output_format`: output format of the video.
+    *   `sync_mode`: mode to sync text to video segment if lengths don't match. [options](https://docs.sync.so/api-reference/endpoint/generate/post-generate#body-options-sync-mode)
+    *   `voice_id`: elevenlabs voice id to use for the video. If empty, audio from the video will be cloned.
+    *   `lipsync_model`: sync.so lipsync model to use for the video. default: `lipsync-2`
+    *   `tts_model`: elevenlabs text to speech model. default: `eleven_multilingual_v2`
+  </Step>
+  <Step title="Generate Videos">
+    Execute the Python script:
+
+    ```bash
+    python main.py
+    ```
+    This command will start the process of generating personalized videos based on the API keys you configured and the data in `example.csv`.
+  </Step>
+  <Step title="Check Results">
+    On completion, the script will save the results to `outputs.csv` within the same directory. This file will contain output urls corresponding to each input.
+
+    That's it! You've now created personalized video messages for your customers.
+  </Step>
+</Steps>
