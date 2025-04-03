@@ -1,0 +1,148 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "sync. docs",
+  "colors": {
+    "primary": "#0000FF",
+    "light": "#FF7A00",
+    "dark": "#0000FF"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "icon": "book-open",
+        "global": {
+          "anchors": [
+            {
+              "anchor": "Playground",
+              "href": "https://sync.so/login",
+              "icon": "screwdriver-wrench"
+            },
+            {
+              "anchor": "Discord",
+              "href": "https://discord.com/invite/synclabs",
+              "icon": "discord"
+            },
+            {
+              "anchor": "Blog",
+              "href": "https://sync.so/blog",
+              "icon": "newspaper"
+            }
+          ]
+        },
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "models",
+              "integrations"
+            ]
+          },
+          {
+            "group": "Developer Guides",
+            "pages": [
+              "api-reference/webhooks",
+              "api-reference/error-handling",
+              {
+                "group": "Tutorials",
+                "icon": "school",
+                "pages": [
+                  "use-cases/personalized-video-messaging"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Generate",
+            "icon": "video",
+            "pages": [
+              "api-reference/endpoint/generate/post-generate",
+              "api-reference/endpoint/generate/get-generate",
+              "api-reference/endpoint/generate/get-generations"
+            ]
+          },
+          {
+            "group": "Analyze",
+            "icon": "magnifying-glass",
+            "pages": [
+              "api-reference/endpoint/analyze/post-cost"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "api": {
+    "openapi": "https://api.sync.so/api-json",
+    "playground": {
+      "display": "interactive"
+    },
+    "examples": {
+      "languages": [
+        "curl",
+        "javascript",
+        "python"
+      ]
+    },
+    "mdx": {
+      "server": "https://api.sync.so"
+    }
+  },
+  "background": {
+    "color": {
+      "dark": "#000000"
+    }
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:hello@sync.so"
+      },
+      {
+        "label": "Status",
+        "href": "https://status.sync.so"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Sign up",
+      "href": "https://sync.so/signup"
+    }
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/synclabs_so",
+      "github": "https://github.com/synchronicity-labs",
+      "linkedin": "https://www.linkedin.com/company/synclabs-ai",
+      "discord": "https://discord.com/invite/synclabs"
+    }
+  },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-YNP15LB2SX"
+    },
+    "posthog": {
+      "apiKey": "phc_82dxgIiZvuUFV41LErIq8UGCNYmisHq8Fn3a4LGtsYO"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/api-reference/quickstart",
+      "destination": "/quickstart"
+    }
+  ]
+}
