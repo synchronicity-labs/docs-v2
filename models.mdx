@@ -1,19 +1,60 @@
 ---
-title: Sync models
-description: Our latest supported AI models to sync lips from any video to any audio
+title: Models
+description: Explore and compare the capabilities of our different models
 icon: sparkles
+mode: "wide"
 ---
 
-Models are what power the Sync API. They are the core of our technology and used throughout the API.
+At sync, we're building foundational models to understand and manipulate humans in video. Our  suite of lipsyncing models allows you to edit the lip movements of any speaker in any video to match a target audio. Explore and compare the capabilities of the different models below.
 
-<CardGroup cols={3} rows={1}>
-  <Card title="lipsync-1.7.1" icon="rocket" href="/models/1.7.1">
-    Recommended for faster, realistic outputs.
-  </Card>
-  <Card title="lipsync-1.8.0" icon="circle-check" href="/models/1.8.0">
-    Flagship model with the most natural lipsync and visual details, but slower.
-  </Card>
-  <Card title="lipsync-1.9.0-beta" icon="star" href="/models/1.9.0">
-    Highest resolution lipsync at an unprecedented speed and quality.
-  </Card>
-</CardGroup>
+| Feature                 | lipsync-2                                     | lipsync-1.9.0-beta                           | lipsync-1.8.0                                 | lipsync-1.7.1                           |
+| :--------------------- | :-------------------------------------------: | :------------------------------------------: | :------------------------------------------: | :------------------------------------------: |
+| **Description**         | Our most natural lipsyncing model yet. The first model that can preserve the unique speaking style of every speaker. Best across all kinds of video content. | Our fastest lipsyncing model. Standard, general-purpose, accurate lipsync.           | Slow, legacy model, suited for budget-constrained tasks. Use lipsync-1.9 & later for best results. | Fast, legacy model, best suited for simple low-res avatar videos.              |
+| **Price / min @ 25 fps** | \$2.4 — \$3                                   | \$1.2 — \$1.5                                | \$1 — \$0.8                                  | \$1 — \$0.8                                  |
+| **Accuracy**    | <Icon icon="bullseye-arrow"/> <Icon icon="bullseye-arrow"/> <Icon icon="bullseye-arrow"/> <Icon icon="bullseye-arrow"/> <Icon icon="bullseye-arrow"/> | <Icon icon="bullseye-arrow"/> <Icon icon="bullseye-arrow"/> <Icon icon="bullseye-arrow"/> <Icon icon="bullseye-arrow"/> <Icon icon="bullseye-arrow"/> | <Icon icon="bullseye-arrow"/> <Icon icon="bullseye-arrow"/> <Icon icon="bullseye-arrow"/>       | <Icon icon="bullseye-arrow"/> <Icon icon="bullseye-arrow"/> <Icon icon="bullseye-arrow"/>       |
+| **Speed**               | <Icon icon="bolt" iconType="solid"/> <Icon icon="bolt" iconType="solid"/> <Icon icon="bolt" iconType="solid"/> <Icon icon="bolt" iconType="solid"/> | <Icon icon="bolt" iconType="solid"/> <Icon icon="bolt" iconType="solid"/> <Icon icon="bolt" iconType="solid"/> <Icon icon="bolt" iconType="solid"/> <Icon icon="bolt" iconType="solid"/> | <Icon icon="bolt" iconType="solid"/> <Icon icon="bolt" iconType="solid"/>                       | <Icon icon="bolt" iconType="solid"/> <Icon icon="bolt" iconType="solid"/> <Icon icon="bolt" iconType="solid"/> <Icon icon="bolt" iconType="solid"/> <Icon icon="bolt" iconType="solid"/> |
+| **Style**      | Lip movements in the unique style of the speaker                                                                            | Standard generic lip movements                                                         | Standard generic lip movements                                                                    | Standard generic lip movements                                                |
+| **Identity Preservation** | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/>                       | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/>                       |
+| **Teeth**               | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> |
+| **Face Detection**      | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> |
+| **Face Blending**       | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/>                       | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/>                       | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/>                       |
+| **Pose Robustness**     | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/>                       | <Icon icon="star" iconType="solid"/>                                                            | <Icon icon="star" iconType="solid"/>                                                            |
+| **Beard**               | <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> <Icon icon="star" iconType="solid"/> | <Icon icon="star" iconType="solid"/>                                                            | <Icon icon="star" iconType="solid"/>                                                            | <Icon icon="star" iconType="solid"/>                                                            |
+| **Face Resolution**     | 512×512                                       | 512×512                                      | 512×512                                      | 256×256                                      |
+| **Best for**        | Best across all kinds of videos, outperforms every other lipsync model across all key attributes.                             | Simpler avatar-style use cases                                                         | Legacy model, use 1.9.0 and above                                                                 | Legacy model, might work for low-quality videos                               |
+
+All models are available in both [Playground](https://sync.so/login) and [API](https://docs.sync.so/api-reference/endpoint/generate/post-generate#body-model). 
+
+<Accordion title="FAQs" icon="circle-question">
+  <AccordionGroup>
+    
+    <Accordion title="Why isn't my AI-generated character's lip movement working properly?">
+      The character in the input video needs to look like they are talking. Our models learn to mimic the speaking style in the input video. If the character is completely static, the model might not generate lips that move either.
+    </Accordion>
+    
+    <Accordion title="Can I use sync to lipsync a song to a character?">
+      Absolutely, our latest model is your best bet for this. For best results, be sure to isolate and upload the vocals track, as the instrumental sounds can sometimes interfere with the lipsync quality.
+    </Accordion>
+    
+    <Accordion title="Does sync work with animal faces or non-human characters?">
+      You can lipsync human-like faces, but our models don't currently support animals or non-humanoid characters.
+    </Accordion>
+    
+    <Accordion title="Why is the lipsync quality poor or non-existent in certain parts of my video?">
+      Please check if the problematic segments have:
+      * Multiple speakers in the frame
+      * Faces that are too small or in profile view
+      * Segments where the speaker in the input video is not speaking
+      
+      For multiple people, try masking or cropping out some faces using external tools. We're working to resolve these issues in future model releases.
+    </Accordion>
+    
+    <Accordion title="Why does my video have poor quality lipsync when faces are in profile view?">
+      Extreme profile view faces can lead to sub-par results. Please try with our latest model (lipsync-2), which has improved pose robustness and is your best option for challenging angles.
+    </Accordion>
+    
+    <Accordion title="Why does the generated face appear to be lower resolution than my input video?">
+      Our latest model generates faces at 512×512 resolution, which is usually sufficient for most 1080p videos. If the face in your input video is quite large, you may notice some resolution differences. For the highest possible quality, lipsync-2 offers the best resolution handling among our models.
+    </Accordion>
+  </AccordionGroup>
+</Accordion>
