@@ -1,0 +1,79 @@
+---
+title: "Translation/Dubbing"
+description: "Translate/Dub videos to any language."
+---
+
+## Translation/Dubbing
+
+Video translation and dubbing allows you to convert your content into different languages while maintaining natural lip movements and voice quality. This tutorial will show you how to translate and dub videos programmatically, making your content accessible to global audiences.
+
+Follow these steps to run the translation/dubbing example:
+
+<Steps>
+  <Step title="Clone Github Repository">
+    Clone the [sync-examples repository](https://github.com/synchronicity-labs/sync-examples).
+
+    ```bash
+    git clone https://github.com/synchronicity-labs/sync-examples.git
+    cd sync-examples/translation/python
+    ```
+  </Step>
+  <Step title="Set Up Environment">
+    Create a virtual environment and install the required dependencies:
+
+    ```bash
+    python -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+    ```
+  </Step>
+  <Step title="Configure Inputs and Settings">
+    Modify the `args.py` file to configure the following inputs and settings:
+
+    *   `SYNCLABS_API_KEY`: Your API key for Sync Labs
+    *   `ELEVENLABS_API_KEY`: Your API key for ElevenLabs
+    *   `OPENAI_API_KEY`: Your API key for OpenAI
+    
+    Required settings:
+    *   `input_vid_url`: URL of the video to be translated/dubbed.
+    *   `target_language`: Target language for translation (e.g., "Spanish")
+    *   `output_json_path`: File path for saving output JSON data
+    
+    Optional settings:
+    *   `source_language`: Source language of the video (leave blank for auto-detection)
+    *   `voice_id`: ElevenLabs voice ID (leave blank to automatically clone voice from input video)
+    *   `sync_mode`: Mode to sync text to video when lengths don't match (default: "bounce")
+    *   `lipsync_model`: Sync.so lipsync model (default: "lipsync-2")
+    *   `tts_model`: ElevenLabs text-to-speech model (default: "eleven_multilingual_v2")
+    *   `gpt_model`: OpenAI GPT model for translation (default: "gpt-3.5-turbo")
+    *   `transcription_model`: OpenAI model for transcription (default: "whisper-1")
+    *   `segment_start`: Start time of video segment to translate/dub (in seconds, -1 for entire video)
+    *   `segment_end`: End time of video segment to translate/dub (in seconds, -1 for entire video)
+
+    <Note>
+      * The input video file must contain audio that will be used for voice cloning, if a voice ID is not provided.
+      * Refer to [ElevenLabs](https://elevenlabs.io/docs/models) and [OpenAI](https://platform.openai.com/docs/guides/speech-to-text) for more information on supported languages and models.
+    </Note>
+  </Step>
+  <Step title="Translate/Dub Videos">
+    Execute the Python script:
+
+    ```bash
+    python main.py
+    ```
+    This command will start the process of translating/dubbing the video based on the configuration in `args.py`.
+
+    On completion, a JSON file will be saved to the path specified in `output_json_path`, containing the following information:
+    *   `input_video`: URL of the original video that was processed
+    *   `generated_audio`: URL to the translated audio file
+    *   `lipsync_jobID`: Unique ID for the lip-sync job
+    *   `outputUrl`: URL to access the final translated/dubbed video
+    *   `voice_id`: ID of the voice used in the translation (automatically generated if not provided)
+
+    <Note>
+      * **Temporary File Hosting**: This code uses the temporary file hosting service [Uguu](https://uguu.se/) to generate URLs for TTS audio files. These URLs expire after 3 hours. To use your own hosting service, modify `upload_file_uguu()` in `FileProcessor.py`.
+      * **Translation Prompt**: Refer to the `system_prompt` variable in `TranslationService.py` to customize the translation prompt.
+      * **Job Polling**: Polling for lipsync job completion times out after 60 mins. Adjust the timeout limit in `LipSyncService.py` or use `fetch_updates.py` to retrieve output URLs using the `output_json_path`.
+    </Note>
+  </Step>
+</Steps>

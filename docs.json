@@ -51,7 +51,8 @@
                 "group": "Tutorials",
                 "icon": "school",
                 "pages": [
-                  "use-cases/personalized-video-messaging"
+                  "use-cases/personalized-video-messaging",
+                  "use-cases/translation"
                 ]
               }
             ]
