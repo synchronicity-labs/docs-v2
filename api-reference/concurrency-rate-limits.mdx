@@ -1,0 +1,24 @@
+---
+title: "Concurrency & Rate Limiting"
+subtitle: "Understanding rate limiting and concurrency"
+---
+
+## Rate Limiting
+
+Sync API has a rate limit of 60 requests per minute across all endpoints, on exceeding this limit, you will receive a 429 error.
+
+## Concurrency
+
+Concurrency refers to the number of generations that can be submitted/processed concurrently. Requests to create new generations will fail with a 429 error if the concurrency limit is exceeded.
+
+To check your generations currently in PENDING/PROCESSING state, you can use the [List Generations](/api-reference/generate-api/endpoints/list-generations) endpoint.
+
+Concurrency limits are defined in the subscription plan. Current limits are:
+
+| Plan       | Concurrent Requests |
+|------------|-------------------|
+| Hobbyist   | 1               |
+| Creator    | 3             |
+| Growth     | 6             |
+| Scale      | 15             |
+| Enterprise | Custom        |

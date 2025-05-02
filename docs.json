@@ -47,6 +47,7 @@
             "pages": [
               "api-reference/webhooks",
               "api-reference/error-handling",
+              "api-reference/concurrency-rate-limits",
               {
                 "group": "Tutorials",
                 "icon": "school",
