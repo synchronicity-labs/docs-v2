@@ -39,11 +39,11 @@ To use ElevenLabs with the API, include the following parameters in your request
 {
   "input": [
     {
-      "type": "text",           // Must be "text" for text-to-speech
-      "text": "Your text here",  // The text to convert to speech
+      "type": "text",                // Must be "text" for text-to-speech
       "provider": {
-        "name": "elevenlabs",   // Specify ElevenLabs as the provider
-        "voiceId": "voice_id"   // Replace with an actual ElevenLabs voice ID
+        "name": "elevenlabs",        // Specify ElevenLabs as the provider
+        "voiceId": "voice_id",       // Replace with an actual ElevenLabs voice ID
+        "script": "Your text here",  // The text to convert to speech
       }
     }
   ],
@@ -64,10 +64,10 @@ payload = {
   "input": [
     {
       "type": "text",
-      "text": "Welcome to Sync integrations. This audio was generated with ElevenLabs.",
       "provider": {
         "name": "elevenlabs",
-        "voiceId": "EXAVITQu4vr4xnSDxMaL"  # Example voice ID
+        "voiceId": "EXAVITQu4vr4xnSDxMaL",
+        "script": "Welcome to Sync integrations. This audio was generated with ElevenLabs.",  # Example voice ID
       }
     },
     {
